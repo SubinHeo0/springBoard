@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardVO;
 import com.itwillbs.domain.Criteria;
+import com.itwillbs.domain.PageMarker;
 import com.itwillbs.service.BoardService;
 
 @Controller
@@ -157,7 +158,7 @@ public class BoardController {
 	
 	
 	// http://localhost:8088/board/listCri
-	// http://localhost:8088/board/listCri?p  erPageNum=5
+	// http://localhost:8088/board/listCri?perPageNum=5
 	// http://localhost:8088/board/listCri?page=5
 	// http://localhost:8088/board/listCri?perPageNum=5&page=5
 	// 페이징처리 - 게시판리스트
@@ -172,6 +173,13 @@ public class BoardController {
 		// 서비스 - 페이징처리된 리스트 동작 호출
 		// 해당정보를 view 페이지로 전달
 		model.addAttribute("boardList", service.boardListCri(cri));
+		
+		// 하단 페이징처리 정보 전달
+		PageMarker pageMarker = new PageMarker();
+		pageMarker.setCri(cri);
+		pageMarker.setTotalCount(416);
+		
+		model.addAttribute("pm", pageMarker);
 		
 	}
 	
