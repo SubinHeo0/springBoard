@@ -69,7 +69,7 @@
 		// 목록 버튼 클릭시
 		$('.bg-purple').click(function(){
 			alert(' 목록 버튼 클릭! ');
-			location.href = '/board/listAll';
+			location.href = '/board/listCri';
 		});
 		
 		// 폼태그 정보

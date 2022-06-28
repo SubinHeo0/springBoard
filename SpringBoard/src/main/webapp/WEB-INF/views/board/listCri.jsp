@@ -45,7 +45,11 @@
 
 	<div class="box-footer clearfix">
 		<ul class="pagination pagination-sm no-margin pull-right">
-			<li><a href="#">«</a></li>
+		
+			<c:if test="${pm.prev }">
+<!-- 				<li><a href="#">«</a></li> -->
+				<li><a href="listCri?page=${pm.startPage - 1 }">&laquo;</a></li>
+			</c:if>
 			
 			<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
 				<li <c:out value="${pm.cri.page == idx? 'class=active':''}"/> >
@@ -53,7 +57,11 @@
 				</li>			
 			</c:forEach>			
 			
-			<li><a href="#">»</a></li>
+			<c:if test="${pm.next && pm.endPage > 0 }">
+<!-- 				<li><a href="#">»</a></li> -->
+				<li><a href="listCri?page=${pm.endPage + 1 }">&raquo;</a></li>
+			</c:if>
+			
 		</ul>
 	</div>
 </div>

@@ -21,4 +21,6 @@ public interface BoardService {
 	
 	public List<BoardVO> boardListCri(Criteria cri);
 	
+	public Integer totalCnt();
+	
 }

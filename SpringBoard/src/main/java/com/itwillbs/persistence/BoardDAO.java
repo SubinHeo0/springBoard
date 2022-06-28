@@ -30,5 +30,7 @@ public interface BoardDAO {
 	public List<BoardVO> listPage(int page, int size);
 	public List<BoardVO> listPage(Criteria cri);
 	
+	// 글 전체 개수 조회
+	public Integer getTotalCnt();
 	
 }

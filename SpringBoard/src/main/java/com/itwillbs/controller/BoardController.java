@@ -135,7 +135,7 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result", "MODOK");
 		
-		return "redirect:/board/listAll";
+		return "redirect:/board/listCri";
 	}
 	
 	// http://localhost:8088/board/remove
@@ -153,7 +153,7 @@ public class BoardController {
 		rttr.addFlashAttribute("result", "DELOK");
 		
 		// "글 삭제 완료" 메세지 출력, 페이지 이동
-		return "redirect:/board/listAll";
+		return "redirect:/board/listCri";
 	}
 	
 	
@@ -163,7 +163,7 @@ public class BoardController {
 	// http://localhost:8088/board/listCri?perPageNum=5&page=5
 	// 페이징처리 - 게시판리스트
 	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
-	public void listCriGET(Criteria cri, Model model) throws Exception {
+	public void listCriGET(Criteria cri, Model model, HttpSession session) throws Exception {
 		log.info(" listCriGET() - 페이징 처리 리스트 ");
 		
 		// 페이징 처리 객체
@@ -177,9 +177,11 @@ public class BoardController {
 		// 하단 페이징처리 정보 전달
 		PageMarker pageMarker = new PageMarker();
 		pageMarker.setCri(cri);
-		pageMarker.setTotalCount(416);
+		pageMarker.setTotalCount(service.totalCnt());
 		
 		model.addAttribute("pm", pageMarker);
+		
+		session.setAttribute("upFlag", "1");	// 0-false, 1-true
 		
 	}
 	

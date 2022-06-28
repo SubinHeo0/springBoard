@@ -106,6 +106,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> listPage(Criteria cri) {
 		return sqlSession.selectList(NAMESPACE+".listCri", cri);
 	}
+
+	@Override
+	public Integer getTotalCnt() {
+		return sqlSession.selectOne(NAMESPACE+".totalCnt");
+	}
 	
 	
 	

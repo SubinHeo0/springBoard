@@ -56,6 +56,11 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> boardListCri(Criteria cri) {
 		return dao.listPage(cri);
 	}
+
+	@Override
+	public Integer totalCnt() {
+		return dao.getTotalCnt();
+	}
 	
 	
 	
