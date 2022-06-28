@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.itwillbs.mapper.BoardMapper">
+ 
+ 	<insert id="createBoard">
+ 		insert into tbl_board (title,content,writer)
+ 		values(#{title},#{content},#{writer})
+ 	</insert>
+ 	
+ 	<select id="listAll" resultType="BoardVO">
+ 		select * from tbl_board
+ 	</select>
+ 	
+ 	<select id="getBoard" resultType="BoardVO">
+ 		select * from tbl_board where bno = #{bno}
+ 	</select>
+ 	
+ 	<update id="updateBoard">
+ 		update tbl_board set title=#{title},content=#{content},writer=#{writer}
+ 		where bno = #{bno}
+ 	</update>
+ 	
+ 	<delete id="deleteBoard">
+ 		delete from tbl_board where bno = #{bno}
+ 	</delete>
+ 	
+ 	<update id="updateBoardCnt">
+ 		update tbl_board set viewcnt = viewcnt + 1 
+ 		where bno = #{bno}
+ 	</update>
+ 	
+ 	<select id="listPage" resultType="BoardVO">
+ 		<![CDATA[
+ 		select * from tbl_board
+ 		where bno > 0
+ 		order by bno desc, regdate desc
+ 		limit 0,10
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="listCri" resultType="BoardVO">
+ 		<![CDATA[
+ 		select * from tbl_board
+ 		where bno > 0
+ 		order by bno desc, regdate desc
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 	</select>
+ 	
+ </mapper>
