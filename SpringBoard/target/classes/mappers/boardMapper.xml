@@ -50,4 +50,9 @@
  		]]>
  	</select>
  	
+ 	<select id="totalCnt" resultType="int">
+ 		select count(bno) from tbl_board
+ 	</select>
+ 	
+ 	
  </mapper>

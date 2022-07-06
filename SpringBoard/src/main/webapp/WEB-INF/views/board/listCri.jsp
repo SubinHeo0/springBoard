@@ -6,12 +6,39 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<h1>listCri.jsp</h1>
+<script>
+	$(document).ready(function(){
+		
+		$('#itwillCNT').click(function(){
+			
+			$.ajax({
+				url : "/count",
+				type : "GET",
+				success : function(data){
+					alert("성공!");
+					console.log(data);
+					
+					$('#itwillTitle').append("글의 개수 : "+data+"개");
+					
+				},
+				error : function(data){
+					alert("에러발생!");
+					console.log(data);
+				}
+		
+			});
+		});
+		
+	});
+</script>
+
+<h1 id="itwillTitle">listCri.jsp</h1>
 <%-- ${boardList } --%>
 
 <div class="box">
 	<div class="box-header with-border">
 		<h3 class="box-title">Bordered Table</h3>
+		<input type="button" class="btn btn-block btn-info" id="itwillCNT" value="저장된 글의 수 조회">
 	</div>
 
 	<div class="box-body">
